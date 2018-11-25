@@ -1,2 +1,6 @@
 ---
 # tasks file for ansible-role-less4zos
+tasks:
+    - name: see if it works
+      remote_user: ansible
+      ping:
