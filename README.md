@@ -1,6 +1,8 @@
 Ansible Role: Less for z/OS
 =========
 
+Note: This project is incomplete.  :in_construction:
+
 Less (v 530) binary compiled for z/OS
 
 See the [official website](http://www.greenwoodsoftware.com/less/) for more info on less.
