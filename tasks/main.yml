@@ -1,6 +1,20 @@
 ---
 # tasks file for ansible-role-less4zos
-tasks:
-    - name: see if it works
-      remote_user: ansible
-      ping:
+- name: upload pax archive
+  copy:
+    src: ./less.pax
+    dest: .
+  register: copy_result
+- name: ensure install location exists
+  file:
+    path: "{{ install_prefix }}"
+    state: directory
+- name: unpack archive to install location
+  shell: PAX_LOC=`pwd` && cd {{ install_prefix }} && pax -zrf $PAX_LOC/less.pax
+- name: check if less bin already on system-wide PATH
+  shell: "cat {{ path_to_bash_profile }}"
+  register: echo_path_result
+  ignore_errors: yes
+- name: add less bin system-wide PATH
+  shell: "echo PATH=$PATH:{{ install_prefix }}/bin >> {{ path_to_bash_profile }}"
+  when: echo_path_result['stdout'].find('/home/ansible/install/bin') == -1
