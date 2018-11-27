@@ -4,7 +4,6 @@
   copy:
     src: ./less.pax
     dest: .
-  register: copy_result
 - name: ensure install location exists
   file:
     path: "{{ install_prefix }}"
