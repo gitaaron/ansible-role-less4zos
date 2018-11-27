@@ -1,2 +1,4 @@
 ---
 # defaults file for ansible-role-less4zos
+install_prefix: /usr/lpp/less
+path_to_bash_profile: /usr/local/.bash_profile
